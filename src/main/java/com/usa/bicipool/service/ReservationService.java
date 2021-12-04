@@ -51,7 +51,7 @@ public class ReservationService {
         Optional<Reservations> exist = repository.getById(reservation.getIdReservation());
         if (exist.isPresent()) {
             exist.get().setReservationDate(reservation.getReservationDate());
-            return exist.get();
+            return repository.save(exist.get());
         } else {
             return reservation;
         }
