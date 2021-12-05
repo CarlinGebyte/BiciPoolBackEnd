@@ -22,8 +22,6 @@ import org.springframework.stereotype.Service;
  * Clase ServiciosFavorites
  */
 public class ServiceFavorites {
-    
-
 
     @Autowired
     private FavoritesRepository metodCrud;
@@ -53,27 +51,28 @@ public class ServiceFavorites {
     public Favorites update(Favorites favorites) {
         if (favorites.getIdfavorites() != null) {
             Optional<Favorites> emp = metodCrud.getFavorites(favorites.getIdfavorites());
-            if (!emp.isEmpty()) {
-                if (favorites.getIdfavorites() != null) {
-                    emp.get().setIdfavorites(favorites.getIdfavorites());
+            if (emp.isPresent()) {
 
+                if (favorites.getBike() != null) {
+                    emp.get().setBike(favorites.getBike());
+                }
+                if (favorites.getUser() != null) {
+                    emp.get().setUser(favorites.getUser());
                 }
             }
-                metodCrud.save(emp.get());
-                return emp.get();
-            } else {
-                return favorites;
-            }
-     
+            
+            return metodCrud.save(emp.get());
+        } else {
+            return favorites;
+        }
+
     }
-      public boolean deleteFavorites(int id) {
-    Boolean aBoolean = getFavorites(id).map(favorites -> {
+
+    public boolean deleteFavorites(int id) {
+        Boolean aBoolean = getFavorites(id).map(favorites -> {
             metodCrud.delete(favorites);
             return true;
         }).orElse(false);
         return aBoolean;
     }
 }
-       
-
-

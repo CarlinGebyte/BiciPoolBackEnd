@@ -1,5 +1,6 @@
 package com.usa.bicipool.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,7 +34,7 @@ public class Score implements Serializable {
      */
     @NotNull
     @NotBlank
-    @Column(name = "mensaje")
+    @Column(name = "message")
     private String message;
 
     /**
@@ -42,5 +43,10 @@ public class Score implements Serializable {
     @NotNull
     @Column(name = "score")
     private Integer score;
+    
+    @ManyToOne
+    @JoinColumn(name="serial")
+    @JsonIgnoreProperties({"scores","favorites","reservations","owner"})
+    private Bike bike;
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
  * @author CarlinGebyte
  */
 @RestController
-@RequestMapping("/score/")
+@RequestMapping("/api/score")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class ScoreController {
     /**
@@ -30,7 +30,7 @@ public class ScoreController {
      * Meétodo para obtener todas las calificaciones
      * @return
      */
-    @GetMapping("all")
+    @GetMapping("/all")
     public List<Score> getAll() {
         return service.getAll();
     }
@@ -40,7 +40,7 @@ public class ScoreController {
      * @param score
      * @return
      */
-    @PostMapping("save")
+    @PostMapping("/save")
     public Score save(@RequestBody Score score) {
         return service.save(score);
     }
@@ -50,7 +50,7 @@ public class ScoreController {
      * @param score
      * @return
      */
-    @PutMapping("update")
+    @PutMapping("/update")
     public Score update(@RequestBody Score score) {
         return service.update(score);
     }
@@ -59,7 +59,7 @@ public class ScoreController {
      * Método para eliminar una calificación
      * @param idScore
      */
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer idScore) {
         service.delete(idScore);
     }

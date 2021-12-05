@@ -5,18 +5,25 @@
  */
 package com.usa.bicipool.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.List;
 
 @Entity
-@Table
+@Table(name = "bikes")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,7 +31,7 @@ import lombok.NoArgsConstructor;
  *
  * @author Marco Moreno
  */
-public class Bike {
+public class Bike implements Serializable {
     
     @Id
     /**
@@ -69,5 +76,20 @@ public class Bike {
      */
     private String status;   
     
+    @OneToOne(mappedBy = "bike")
+    @JsonIgnoreProperties("bike")
+    private Owner owner;
+    
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "bike")
+    @JsonIgnoreProperties("bike")
+    private List<Score> scores;
+    
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "bike")
+    @JsonIgnoreProperties({"bike","reservations","user"})
+    private List<Favorites> favorites;
+    
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "bike")
+    @JsonIgnoreProperties({"bike","favorites","user"})
+    private List<Reservations> reservations;
     
 }
