@@ -12,6 +12,7 @@ import java.util.Optional;
  */
 @Service
 public class ReservationService {
+
     /**
      * Atributo repositorio de reservaciones
      */
@@ -19,6 +20,7 @@ public class ReservationService {
 
     /**
      * Constructor
+     *
      * @param repository
      */
     public ReservationService(ReservationRepository repository) {
@@ -27,6 +29,7 @@ public class ReservationService {
 
     /**
      * Método para obtener todas las reservaciones
+     *
      * @return
      */
     public List<Reservations> getAll() {
@@ -35,6 +38,7 @@ public class ReservationService {
 
     /**
      * Método para crear una reservación
+     *
      * @param reservation
      * @return
      */
@@ -44,13 +48,22 @@ public class ReservationService {
 
     /**
      * Método para actualizar una reservación
+     *
      * @param reservation
      * @return
      */
     public Reservations update(Reservations reservation) {
         Optional<Reservations> exist = repository.getById(reservation.getIdReservation());
         if (exist.isPresent()) {
-            exist.get().setReservationDate(reservation.getReservationDate());
+            if (reservation.getBike() != null) {
+                exist.get().setBike(reservation.getBike());
+            }
+            if (reservation.getReservationDate() != null) {
+                exist.get().setReservationDate(reservation.getReservationDate());
+            }
+            if (reservation.getUser() != null) {
+                exist.get().setUser(reservation.getUser());
+            }
             return repository.save(exist.get());
         } else {
             return reservation;
@@ -59,9 +72,11 @@ public class ReservationService {
 
     /**
      * Método para eliminar una reservación
+     *
      * @param idReservation
      */
     public void delete(Integer idReservation) {
         repository.delete(idReservation);
     }
+
 }

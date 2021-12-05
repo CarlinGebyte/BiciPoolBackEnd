@@ -10,7 +10,7 @@ import java.util.List;
  * @author CarlnGebyte
  */
 @RestController
-@RequestMapping("/reservation/")
+@RequestMapping("/api/reservation")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class ReservationController {
     /**
@@ -30,7 +30,7 @@ public class ReservationController {
      * Método para obtener todas las reservaciones
      * @return
      */
-    @GetMapping("all")
+    @GetMapping("/all")
     public List<Reservations> getAll() {
         return service.getAll();
     }
@@ -40,7 +40,7 @@ public class ReservationController {
      * @param reservation
      * @return
      */
-    @PostMapping("save")
+    @PostMapping("/save")
     public Reservations save(@RequestBody Reservations reservation) {
         return service.save(reservation);
     }
@@ -50,7 +50,7 @@ public class ReservationController {
      * @param reservation
      * @return
      */
-    @PutMapping("update")
+    @PutMapping("/update")
     public Reservations update(@RequestBody Reservations reservation) {
         return service.update(reservation);
     }
@@ -59,7 +59,7 @@ public class ReservationController {
      * Método para eliminar una reservación
      * @param idReservation
      */
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Integer idReservation) {
         service.delete(idReservation);
     }
