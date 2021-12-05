@@ -5,8 +5,8 @@
  */
 package com.usa.bicipool.controller;
 
-import com.usa.bicipool.model.Bike;
-import com.usa.bicipool.service.BikeService;
+import com.usa.bicipool.model.Owner;
+import com.usa.bicipool.service.OwnerService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,66 +28,67 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Marco Moreno
  */
 @RestController
+@RequestMapping("/api/owner")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-@RequestMapping("/api/bikes")
-public class BikeController {
+public class OwnerController {
     
     /**
-     * Atributo bikeService
+     * Atributo Servicio
      */
     @Autowired
-    private BikeService bikeService;
+    private OwnerService service;
+    
     
     /**
-     * Metodo para obtener todas las biciletas
-     * @return getAllBikes()
+     * Método para obtener todos los propietarios
+     * @return getAll()
      */
     @GetMapping("/all")
-    public List<Bike> listarBikes(){
-        return bikeService.getAllBikes();
+    public List<Owner> getOwner(){
+        return service.getAll();
     }
     
     /**
-     * Metodo para obtener una bicileta
+     * Método para traer un propietario
      * @param id
-     * @return findSerial()
+     * @return getOwner()
      */
     @GetMapping("/{id}")
-    public Optional<Bike> findSerial(@PathVariable("id") String id) {
-        return bikeService.findSerial(id);
+    public Optional<Owner> getOwner(@PathVariable("id") int id) {
+        return service.getOwner(id);
     }
     
     /**
-     * Metodo para guardar una bicicleta
-     * @param bike
-     * @return saveBike() 
+     * Metodo para crear un propietario
+     * @param owner
+     * @return save()
      */
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Bike save(@RequestBody Bike bike) {
-        return bikeService.saveBike(bike);
+    public Owner save(@RequestBody Owner owner) {
+        return service.save(owner);
     }
+    
     /**
-     * Actualizar una bicicleta
-     * @param bike
+     * Metodo para actualizar un propietario
+     * @param owner
      * @return update()
      */
-    
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Bike update(@RequestBody Bike bike) {
-        return bikeService.update(bike);
+    public Owner update(@RequestBody Owner owner) {
+        return service.update(owner);
     }
     
     /**
-     * Metodo para eliminar una bicileta
+     * Metodo para eliminar un propietario
      * @param id
-     * @return deleteBike()
+     * @return deleteOwner()
      */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") String id) {
-        return bikeService.deleteBike(id);
-    } 
+    public boolean delete(@PathVariable("id") int id) {
+        return service.deleteOwner(id);
+    }
     
 }

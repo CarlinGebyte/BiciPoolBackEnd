@@ -50,8 +50,15 @@ public class ScoreService {
     public Score update(Score score){
         Optional<Score> exist = repository.getById(score.getIdScore());
         if (exist.isPresent()) {
+            if(score.getScore()!=null){
             exist.get().setScore(score.getScore());
+            }
+            if(score.getMessage()!=null){
             exist.get().setMessage(score.getMessage());
+            }
+            if(score.getBike()!=null){
+                exist.get().setBike(score.getBike());
+            }
             return repository.save(exist.get());
         } else {
             return score;

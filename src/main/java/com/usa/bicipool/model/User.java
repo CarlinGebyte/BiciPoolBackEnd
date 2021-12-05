@@ -4,10 +4,16 @@
  */
 package com.usa.bicipool.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +26,7 @@ import lombok.NoArgsConstructor;
  * @version 1.0
  */
 @Entity
-@Table(name = "usuarios")
+@Table(name = "users")
 @Data
 @Builder
 @NoArgsConstructor
@@ -47,7 +53,7 @@ public class User implements Serializable{
     /**
      * Variable apellidouno
      */
-    private Integer apellidouno;
+    private String apellidouno;
     
     @Column
     /**
@@ -145,9 +151,13 @@ public class User implements Serializable{
      */
     private String password;
     
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "user")
+    @JsonIgnoreProperties({"user","bike","favorites"})
+    private List<Reservations> reservations;
     
-   
-        
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "user")
+    @JsonIgnoreProperties({"user","bike","reservations"})
+    private List<Favorites> favorites;
     
     
 }

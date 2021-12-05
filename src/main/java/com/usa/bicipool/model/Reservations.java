@@ -1,5 +1,6 @@
 package com.usa.bicipool.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,4 +35,14 @@ public class Reservations implements Serializable {
     @NotNull
     @Column(name = "reservation_date")
     private Date reservationDate;
+    
+    @ManyToOne
+    @JoinColumn(name="serial")
+    @JsonIgnoreProperties({"reservations","favorites","user"})
+    private Bike bike;
+    
+    @ManyToOne
+    @JoinColumn(name="iddocument")
+    @JsonIgnoreProperties({"reservations","favorites","bike"})
+    private User user;
 }
