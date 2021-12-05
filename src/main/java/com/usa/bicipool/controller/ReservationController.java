@@ -20,6 +20,7 @@ public class ReservationController {
 
     /**
      * Constructor
+     *
      * @param service
      */
     public ReservationController(ReservationService service) {
@@ -28,6 +29,7 @@ public class ReservationController {
 
     /**
      * Método para obtener todas las reservaciones
+     *
      * @return
      */
     @GetMapping("/all")
@@ -37,6 +39,7 @@ public class ReservationController {
 
     /**
      * Método para crear una reservación
+     *
      * @param reservation
      * @return
      */
@@ -47,6 +50,7 @@ public class ReservationController {
 
     /**
      * Método para actualizar una reservación
+     *
      * @param reservation
      * @return
      */
@@ -57,6 +61,7 @@ public class ReservationController {
 
     /**
      * Método para eliminar una reservación
+     *
      * @param idReservation
      */
     @DeleteMapping("/{id}")

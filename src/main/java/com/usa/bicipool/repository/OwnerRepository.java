@@ -7,54 +7,61 @@ package com.usa.bicipool.repository;
 
 import com.usa.bicipool.interfaces.OwnerInterface;
 import com.usa.bicipool.model.Owner;
-import java.util.List;
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
+
 /**
- *
  * @author Marco Moreno
  */
 @Repository
 public class OwnerRepository {
-    
+
     /**
-//     * Crud
+     * Crud
      */
-    @Autowired
     private OwnerInterface crud;
-    
+
     /**
-     * 
+     * Constructor
+     *
+     * @param crud
+     */
+    public OwnerRepository(OwnerInterface crud) {
+        this.crud = crud;
+    }
+
+    /**
      * @return crud.findAll()
      */
-    public List<Owner> getAll(){
+    public List<Owner> getAll() {
         return (List<Owner>) crud.findAll();
     }
-    
+
     /**
-     * 
      * @param id
      * @return crud.findById()
      */
-    public Optional<Owner> getOwner(int id){
+    public Optional<Owner> getOwner(int id) {
         return crud.findById(id);
     }
+
     /**
-     * 
      * @param owner
      * @return crud.save()
      */
-    public Owner save(Owner owner){
+    public Owner save(Owner owner) {
         return crud.save(owner);
     }
+
     /**
      * delete
-     * @param owner 
+     *
+     * @param owner
      */
-    public void delete(Owner owner){
+    public void delete(Owner owner) {
         crud.delete(owner);
     }
-  
+
 }

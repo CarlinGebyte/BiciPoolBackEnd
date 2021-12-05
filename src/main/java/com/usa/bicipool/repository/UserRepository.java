@@ -5,41 +5,43 @@
 package com.usa.bicipool.repository;
 
 
-
-
 import com.usa.bicipool.interfaces.UserInterface;
 import com.usa.bicipool.model.User;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 
 /**
- *
  * @author Luis Baquero
  * @version 1.0
  */
 
 @Repository
 public class UserRepository {
-    @Autowired
+
     private UserInterface crud;
-    
-    public List<User> getAll(){
+
+    public UserRepository(UserInterface crud) {
+        this.crud = crud;
+    }
+
+    public List<User> getAll() {
         return (List<User>) crud.findAll();
     }
-    
-    public Optional<User> getUser(int id){
+
+    public Optional<User> getUser(int id) {
         return crud.findById(id);
     }
-    public User save(User user){
+
+    public User save(User user) {
         return crud.save(user);
     }
-    public void delete(User user){
+
+    public void delete(User user) {
         crud.delete(user);
     }
 
-  
-    
+
 }

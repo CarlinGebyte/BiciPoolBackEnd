@@ -20,6 +20,7 @@ public class ScoreController {
 
     /**
      * Constructor
+     *
      * @param service
      */
     public ScoreController(ScoreService service) {
@@ -28,6 +29,7 @@ public class ScoreController {
 
     /**
      * Meétodo para obtener todas las calificaciones
+     *
      * @return
      */
     @GetMapping("/all")
@@ -37,6 +39,7 @@ public class ScoreController {
 
     /**
      * Método para crear una calificación
+     *
      * @param score
      * @return
      */
@@ -47,6 +50,7 @@ public class ScoreController {
 
     /**
      * Métoo para actualizar una calificación
+     *
      * @param score
      * @return
      */
@@ -57,6 +61,7 @@ public class ScoreController {
 
     /**
      * Método para eliminar una calificación
+     *
      * @param idScore
      */
     @DeleteMapping("/{id}")

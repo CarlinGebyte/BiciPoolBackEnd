@@ -7,26 +7,32 @@ package com.usa.bicipool.service;
 
 import com.usa.bicipool.model.Owner;
 import com.usa.bicipool.repository.OwnerRepository;
-import java.util.List;
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 /**
- *
  * @author Marco Moreno
  */
 @Service
 public class OwnerService {
 
     /**
-     *
+     * Repositorio
      */
-    @Autowired
     private OwnerRepository metodoCrud;
 
     /**
+     * Constructor
      *
+     * @param metodoCrud
+     */
+    public OwnerService(OwnerRepository metodoCrud) {
+        this.metodoCrud = metodoCrud;
+    }
+
+    /**
      * @return metodocrud.getAll()
      */
     public List<Owner> getAll() {
@@ -34,7 +40,6 @@ public class OwnerService {
     }
 
     /**
-     *
      * @param id
      * @return metodoCrud.getOwner()
      */
@@ -43,7 +48,6 @@ public class OwnerService {
     }
 
     /**
-     *
      * @param owner
      * @return
      */
@@ -61,7 +65,6 @@ public class OwnerService {
     }
 
     /**
-     *
      * @param owner
      * @return
      */
@@ -85,7 +88,6 @@ public class OwnerService {
     }
 
     /**
-     *
      * @param id
      * @return metodoCrud.delete
      */

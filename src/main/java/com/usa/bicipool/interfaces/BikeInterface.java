@@ -9,9 +9,8 @@ import com.usa.bicipool.model.Bike;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
  * @author Marco Moreno
  */
-public interface BikeInterface extends CrudRepository <Bike, String> {
-    
+public interface BikeInterface extends CrudRepository<Bike, String> {
+
 }

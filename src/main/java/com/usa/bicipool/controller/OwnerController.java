@@ -7,49 +7,42 @@ package com.usa.bicipool.controller;
 
 import com.usa.bicipool.model.Owner;
 import com.usa.bicipool.service.OwnerService;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
  * @author Marco Moreno
  */
 @RestController
 @RequestMapping("/api/owner")
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class OwnerController {
-    
+
     /**
      * Atributo Servicio
      */
-    @Autowired
     private OwnerService service;
-    
-    
+
+    public OwnerController(OwnerService service) {
+        this.service = service;
+    }
+
     /**
      * Método para obtener todos los propietarios
+     *
      * @return getAll()
      */
     @GetMapping("/all")
-    public List<Owner> getOwner(){
+    public List<Owner> getOwner() {
         return service.getAll();
     }
-    
+
     /**
      * Método para traer un propietario
+     *
      * @param id
      * @return getOwner()
      */
@@ -57,9 +50,10 @@ public class OwnerController {
     public Optional<Owner> getOwner(@PathVariable("id") int id) {
         return service.getOwner(id);
     }
-    
+
     /**
      * Metodo para crear un propietario
+     *
      * @param owner
      * @return save()
      */
@@ -68,9 +62,10 @@ public class OwnerController {
     public Owner save(@RequestBody Owner owner) {
         return service.save(owner);
     }
-    
+
     /**
      * Metodo para actualizar un propietario
+     *
      * @param owner
      * @return update()
      */
@@ -79,9 +74,10 @@ public class OwnerController {
     public Owner update(@RequestBody Owner owner) {
         return service.update(owner);
     }
-    
+
     /**
      * Metodo para eliminar un propietario
+     *
      * @param id
      * @return deleteOwner()
      */
@@ -90,5 +86,5 @@ public class OwnerController {
     public boolean delete(@PathVariable("id") int id) {
         return service.deleteOwner(id);
     }
-    
+
 }

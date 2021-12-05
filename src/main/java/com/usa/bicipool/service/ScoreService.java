@@ -19,6 +19,7 @@ public class ScoreService {
 
     /**
      * Constructor
+     *
      * @param repository
      */
     public ScoreService(ScoreRepository repository) {
@@ -27,6 +28,7 @@ public class ScoreService {
 
     /**
      * Método para obtener todas las calificaciones
+     *
      * @return
      */
     public List<Score> getAll() {
@@ -35,6 +37,7 @@ public class ScoreService {
 
     /**
      * Método para guardar una calificación
+     *
      * @param score
      * @return
      */
@@ -44,19 +47,20 @@ public class ScoreService {
 
     /**
      * Método para actualizar una calificación
+     *
      * @param score
      * @return
      */
-    public Score update(Score score){
+    public Score update(Score score) {
         Optional<Score> exist = repository.getById(score.getIdScore());
         if (exist.isPresent()) {
-            if(score.getScore()!=null){
-            exist.get().setScore(score.getScore());
+            if (score.getScore() != null) {
+                exist.get().setScore(score.getScore());
             }
-            if(score.getMessage()!=null){
-            exist.get().setMessage(score.getMessage());
+            if (score.getMessage() != null) {
+                exist.get().setMessage(score.getMessage());
             }
-            if(score.getBike()!=null){
+            if (score.getBike() != null) {
                 exist.get().setBike(score.getBike());
             }
             return repository.save(exist.get());
@@ -67,6 +71,7 @@ public class ScoreService {
 
     /**
      * Método para eliminar una calificación
+     *
      * @param idScore
      */
     public void delete(Integer idScore) {

@@ -9,10 +9,9 @@ import com.usa.bicipool.model.Owner;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
  * @author Marco Moreno
  * Version 1.0
  */
-public interface OwnerInterface extends CrudRepository<Owner,Integer> {
-    
+public interface OwnerInterface extends CrudRepository<Owner, Integer> {
+
 }
