@@ -35,14 +35,14 @@ public class Reservations implements Serializable {
     @NotNull
     @Column(name = "reservation_date")
     private Date reservationDate;
-    
+
     @ManyToOne
-    @JoinColumn(name="serial")
-    @JsonIgnoreProperties({"reservations","favorites","user"})
+    @JoinColumn(name = "serial")
+    @JsonIgnoreProperties({"reservations", "favorites", "user"})
     private Bike bike;
-    
+
     @ManyToOne
-    @JoinColumn(name="iddocument")
-    @JsonIgnoreProperties({"reservations","favorites","bike"})
+    @JoinColumn(name = "iddocument")
+    @JsonIgnoreProperties({"reservations", "favorites", "bike"})
     private User user;
 }

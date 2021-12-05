@@ -1,7 +1,7 @@
 package com.usa.bicipool.repository;
 
-import com.usa.bicipool.model.Score;
 import com.usa.bicipool.interfaces.ScoreCrud;
+import com.usa.bicipool.model.Score;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,6 +19,7 @@ public class ScoreRepository {
 
     /**
      * Contructor
+     *
      * @param scoreCrud
      */
     public ScoreRepository(ScoreCrud scoreCrud) {
@@ -27,17 +28,20 @@ public class ScoreRepository {
 
     /**
      * Método para obtener todas las calificaciones
+     *
      * @return
      */
-    public List<Score> getAll(){
+    public List<Score> getAll() {
         return scoreCrud.findAll();
     }
 
     public Optional<Score> getById(Integer idScore) {
         return scoreCrud.findById(idScore);
     }
+
     /**
      * Método para guardar una calificación
+     *
      * @param score
      * @return
      */
@@ -47,6 +51,7 @@ public class ScoreRepository {
 
     /**
      * Método para eliminar una calificación
+     *
      * @param idScore
      */
     public void delete(Integer idScore) {

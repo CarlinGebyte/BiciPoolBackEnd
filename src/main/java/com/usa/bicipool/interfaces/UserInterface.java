@@ -8,12 +8,10 @@ import com.usa.bicipool.model.User;
 import org.springframework.data.repository.CrudRepository;
 
 
-
 /**
- *
  * @author Luis Baquero
  * @version 1.0
  */
-public interface UserInterface extends CrudRepository<User,Integer> {
-    
+public interface UserInterface extends CrudRepository<User, Integer> {
+
 }

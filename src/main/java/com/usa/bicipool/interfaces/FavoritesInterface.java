@@ -8,9 +8,8 @@ import com.usa.bicipool.model.Favorites;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
  * @author PERSONALCASA
  */
-public interface FavoritesInterface extends CrudRepository<Favorites,Integer>{
-    
+public interface FavoritesInterface extends CrudRepository<Favorites, Integer> {
+
 }

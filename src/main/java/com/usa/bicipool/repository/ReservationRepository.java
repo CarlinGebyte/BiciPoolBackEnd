@@ -1,7 +1,7 @@
 package com.usa.bicipool.repository;
 
-import com.usa.bicipool.model.Reservations;
 import com.usa.bicipool.interfaces.ReservationCrud;
+import com.usa.bicipool.model.Reservations;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,6 +19,7 @@ public class ReservationRepository {
 
     /**
      * Constructor
+     *
      * @param reservationCrud
      */
     public ReservationRepository(ReservationCrud reservationCrud) {
@@ -27,6 +28,7 @@ public class ReservationRepository {
 
     /**
      * Método para obtener todas las reservaciones
+     *
      * @return
      */
     public List<Reservations> getAll() {
@@ -35,6 +37,7 @@ public class ReservationRepository {
 
     /**
      * Método para obtener una reservación por Id
+     *
      * @param idReservation
      * @return
      */
@@ -44,6 +47,7 @@ public class ReservationRepository {
 
     /**
      * Método para guardar o actualizar una reservación
+     *
      * @param reservations
      * @return
      */
@@ -53,6 +57,7 @@ public class ReservationRepository {
 
     /**
      * Método para eliminar una reservación
+     *
      * @param idReservation
      */
     public void delete(Integer idReservation) {

@@ -43,10 +43,10 @@ public class Score implements Serializable {
     @NotNull
     @Column(name = "score")
     private Integer score;
-    
+
     @ManyToOne
-    @JoinColumn(name="serial")
-    @JsonIgnoreProperties({"scores","favorites","reservations","owner"})
+    @JoinColumn(name = "serial")
+    @JsonIgnoreProperties({"scores", "favorites", "reservations", "owner"})
     private Bike bike;
 
 }

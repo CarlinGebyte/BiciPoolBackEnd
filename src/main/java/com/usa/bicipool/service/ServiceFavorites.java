@@ -6,16 +6,14 @@ package com.usa.bicipool.service;
 
 import com.usa.bicipool.model.Favorites;
 import com.usa.bicipool.repository.FavoritesRepository;
-import java.util.List;
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 /**
- *
  * @author Luis Baquero
  * @version 1.0
- *
  */
 @Service
 /**
@@ -23,8 +21,12 @@ import org.springframework.stereotype.Service;
  */
 public class ServiceFavorites {
 
-    @Autowired
+
     private FavoritesRepository metodCrud;
+
+    public ServiceFavorites(FavoritesRepository metodCrud) {
+        this.metodCrud = metodCrud;
+    }
 
     public List<Favorites> getAll() {
         return metodCrud.getAll();
@@ -60,7 +62,7 @@ public class ServiceFavorites {
                     emp.get().setUser(favorites.getUser());
                 }
             }
-            
+
             return metodCrud.save(emp.get());
         } else {
             return favorites;

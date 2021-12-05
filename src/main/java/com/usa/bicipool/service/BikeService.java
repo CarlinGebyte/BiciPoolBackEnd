@@ -7,26 +7,32 @@ package com.usa.bicipool.service;
 
 import com.usa.bicipool.model.Bike;
 import com.usa.bicipool.repository.BikeRepository;
-import java.util.List;
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 /**
- *
  * @author Marco Moreno
  */
 @Service
 public class BikeService {
 
     /**
-     *
+     * Repositorio
      */
-    @Autowired
     private BikeRepository bikeRepository;
 
     /**
+     * Constructor
      *
+     * @param bikeRepository
+     */
+    public BikeService(BikeRepository bikeRepository) {
+        this.bikeRepository = bikeRepository;
+    }
+
+    /**
      * @return
      */
     public List<Bike> getAllBikes() {
@@ -34,7 +40,6 @@ public class BikeService {
     }
 
     /**
-     *
      * @param bike
      * @return
      */
@@ -48,7 +53,6 @@ public class BikeService {
     }
 
     /**
-     *
      * @param serial
      * @return
      */
@@ -57,7 +61,6 @@ public class BikeService {
     }
 
     /**
-     *
      * @param bike
      * @return
      */
@@ -106,7 +109,6 @@ public class BikeService {
     }
 
     /**
-     *
      * @param serial
      * @return
      */

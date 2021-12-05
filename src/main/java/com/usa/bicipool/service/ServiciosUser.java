@@ -4,18 +4,16 @@
  */
 package com.usa.bicipool.service;
 
-import com.usa.bicipool.repository.UserRepository;
 import com.usa.bicipool.model.User;
-import java.util.List;
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.usa.bicipool.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 /**
- *
  * @author Luis Baquero
  * @version 1.0
- *
  */
 @Service
 /**
@@ -23,8 +21,11 @@ import org.springframework.stereotype.Service;
  */
 public class ServiciosUser {
 
-    @Autowired
     private UserRepository metodCrud;
+
+    public ServiciosUser(UserRepository metodCrud) {
+        this.metodCrud = metodCrud;
+    }
 
     public List<User> getAll() {
         return metodCrud.getAll();
@@ -51,7 +52,7 @@ public class ServiciosUser {
     public User update(User user) {
         if (user.getIddocument() != null) {
             Optional<User> emp = metodCrud.getUser(user.getIddocument());
-            if (!emp.isEmpty()) {
+            if (emp.isPresent()) {
                 if (user.getIddocument() != null) {
                     emp.get().setIddocument(user.getIddocument());
                 }
