@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,7 +43,7 @@ public class UserController {
         return service.getAll();
     }
     
-     @GetMapping("/{id}")
+    @GetMapping("/{id}")
     public Optional<User> getUser(@PathVariable("id") int id) {
         return service.getUser(id);
     }
@@ -52,6 +53,29 @@ public class UserController {
     public User save(@RequestBody User user) {
         return service.save(user);
     }
+    
+    
+    
+    @GetMapping("/user/{email}/{password}")
+    public ResponseEntity<?> buscarCorreoPass(@PathVariable String email,@PathVariable String password) {
+        
+        List <User> optional = service.getEmailPass(email,password);
+        System.out.println(optional);
+
+        if(optional.size()==0){
+
+            User noencontrado = new User();
+            noencontrado.setIddocument(null);
+            noencontrado.setEmail(email);
+            noencontrado.setPassword(password);
+            
+            return ResponseEntity.ok().body(noencontrado);
+            
+        }else{
+            return ResponseEntity.ok().body(optional.get(0));
+        }
+    }
+    
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public User update(@RequestBody User user) {

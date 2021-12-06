@@ -113,6 +113,11 @@ public class ServiciosUser {
             return user;
         }
     }
+    
+        
+    public List<User> getEmailPass(String email, String password){
+        return metodCrud.findEmailAndPass(email,password);
+    }
 
     public boolean deleteUser(int id) {
         Boolean aBoolean = getUser(id).map(user -> {

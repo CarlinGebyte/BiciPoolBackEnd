@@ -39,7 +39,10 @@ public class UserRepository {
     public void delete(User user){
         crud.delete(user);
     }
-
-  
     
+    
+  
+    public List<User> findEmailAndPass(String email, String password){
+        return crud.findByEmailAndPassword(email,password);
+    }
 }

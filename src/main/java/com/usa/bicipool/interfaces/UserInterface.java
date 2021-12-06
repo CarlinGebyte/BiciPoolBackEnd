@@ -5,6 +5,8 @@
 package com.usa.bicipool.interfaces;
 
 import com.usa.bicipool.model.User;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
 
@@ -16,4 +18,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface UserInterface extends CrudRepository<User,Integer> {
     
+    public List<User> findByEmailAndPassword(String email,String password);    
 }
