@@ -115,6 +115,10 @@ public class ServiciosUser {
         }
     }
 
+    public Optional<User> getEmailPass(String email, String password){
+        return metodCrud.findEmailAndPass(email,password);
+    }
+
     public boolean deleteUser(int id) {
         Boolean aBoolean = getUser(id).map(user -> {
             metodCrud.delete(user);
