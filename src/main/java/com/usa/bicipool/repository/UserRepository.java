@@ -43,5 +43,8 @@ public class UserRepository {
         crud.delete(user);
     }
 
+    public Optional<User> findEmailAndPass(String email, String password){
+        return crud.findByEmailAndPassword(email,password);
+    }
 
 }

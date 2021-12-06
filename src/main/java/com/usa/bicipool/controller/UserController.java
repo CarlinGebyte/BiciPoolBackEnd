@@ -7,6 +7,7 @@ package com.usa.bicipool.controller;
 import com.usa.bicipool.model.User;
 import com.usa.bicipool.service.ServiciosUser;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,6 +37,27 @@ public class UserController {
     public Optional<User> getUser(@PathVariable("id") int id) {
         return service.getUser(id);
     }
+
+    @GetMapping("/user/{email}/{password}")
+    public ResponseEntity<?> buscarCorreoPass(@PathVariable String email, @PathVariable String password) {
+
+        Optional<User> optional = service.getEmailPass(email,password);
+        System.out.println(optional);
+
+        if(optional.isEmpty()){
+
+            User noencontrado = new User();
+            noencontrado.setIddocument(null);
+            noencontrado.setEmail(email);
+            noencontrado.setPassword(password);
+
+            return ResponseEntity.ok().body(noencontrado);
+
+        }else{
+            return ResponseEntity.ok().body(optional.get());
+        }
+    }
+
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
